@@ -17,10 +17,12 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserController {
 
-private final UserService userService;
+    private final UserService userService;
 
-@Autowired
-    public UserController(UserService userService) { this.userService = userService; }
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() {
@@ -61,8 +63,8 @@ private final UserService userService;
 
     @GetMapping("/email/{email}")
     public ResponseEntity<UserDTO> getUserByEmail(@PathVariable("email") String email) {
-     UserDTO user = userService.getUserByEmail(email);
-     return new ResponseEntity<>(user, HttpStatus.OK);
+        UserDTO user = userService.getUserByEmail(email);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @GetMapping("/mobile/{mobileNo}")
