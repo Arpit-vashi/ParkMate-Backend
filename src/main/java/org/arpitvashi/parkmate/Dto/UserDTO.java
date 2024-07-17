@@ -2,7 +2,7 @@ package org.arpitvashi.parkmate.Dto;
 
 import java.sql.Timestamp;
 
-public class usersDto {
+public class UserDTO {
 
     private Long userId;
     private String username;
@@ -12,10 +12,9 @@ public class usersDto {
     private String password;
     private Timestamp createdAt;
 
-    // Constructors
-    public usersDto() {}
+    public UserDTO() {}
 
-    public usersDto(Long userId, String username, String email, Long mobileNo, String role, String password, Timestamp createdAt) {
+    public UserDTO(Long userId, String username, String email, Long mobileNo, String role, String password, Timestamp createdAt) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -25,7 +24,6 @@ public class usersDto {
         this.createdAt = createdAt;
     }
 
-    // Getters and Setters
     public Long getUserId() {
         return userId;
     }
@@ -82,7 +80,6 @@ public class usersDto {
         this.createdAt = createdAt;
     }
 
-    // toString method
     @Override
     public String toString() {
         return "usersDto{" +

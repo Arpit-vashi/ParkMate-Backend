@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "users")
-public class usersModel {
+@Table(name = "Users")
+public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,14 +15,14 @@ public class usersModel {
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Column(name = "password_hash", nullable = false)
-    private String passwordHash;
+    @Column(name = "password", nullable = false)
+    private String password;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "mobileno", nullable = false, unique = true)
-    private Long mobileno;
+    private Long mobileNo;
 
     @Column(name = "role", nullable = false)
     private String role;
@@ -30,19 +30,20 @@ public class usersModel {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Timestamp createdAt;
 
-    // Constructors
-    public usersModel() {}
 
-    public usersModel(String username, String passwordHash, String email, Long mobileno, String role, Timestamp createdAt) {
+    public UserModel() {
+
+    }
+
+    public UserModel(String username, String password, String email, Long mobileNo, String role, Timestamp createdAt) {
         this.username = username;
-        this.passwordHash = passwordHash;
+        this.password = password;
         this.email = email;
-        this.mobileno = mobileno;
+        this.mobileNo = mobileNo;
         this.role = role;
         this.createdAt = createdAt;
     }
 
-    // Getters and Setters
     public Long getUserId() {
         return userId;
     }
@@ -59,12 +60,12 @@ public class usersModel {
         this.username = username;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -76,11 +77,11 @@ public class usersModel {
     }
 
     public Long getMobileNo() {
-        return mobileno;
+        return mobileNo;
     }
 
-    public void setMobileNo(Long mobileno) {
-        this.mobileno = mobileno;
+    public void setMobileNo(Long mobileNo) {
+        this.mobileNo = mobileNo;
     }
 
     public String getRole() {
@@ -99,17 +100,4 @@ public class usersModel {
         this.createdAt = createdAt;
     }
 
-    // toString method
-    @Override
-    public String toString() {
-        return "usersModel{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", passwordHash='" + passwordHash + '\'' +
-                ", email='" + email + '\'' +
-                ", mobileno='" + mobileno + '\'' +
-                ", role='" + role + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
-    }
 }
