@@ -10,4 +10,11 @@ public interface VehicleTypesService {
 
     List<VehicleTypesDTO> getAllVehicleTypes();
 
+    VehicleTypesDTO getVehicleTypesById(Long id);
+
+    VehicleTypesDTO updateVehicleTypes(Long id, VehicleTypesDTO vehicleTypesDTO);
+
+    void deleteVehicleTypes(Long id);
+
+
 }
