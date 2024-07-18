@@ -14,6 +14,7 @@ public class UserMapper {
     public UserDTO toDTO(UserModel model) {
         UserDTO dto = new UserDTO();
         dto.setUserId(model.getUserId());
+        dto.setName(model.getName());
         dto.setUsername(model.getUsername());
         dto.setPassword(model.getPassword());
         dto.setEmail(model.getEmail());
@@ -27,6 +28,7 @@ public class UserMapper {
     public static UserModel toEntity(UserDTO dto) {
         UserModel model = new UserModel();
         model.setUserId(dto.getUserId());
+        model.setName(dto.getName());
         model.setUsername(dto.getUsername());
         model.setPassword(dto.getPassword());
         model.setEmail(dto.getEmail());
