@@ -21,4 +21,6 @@ public interface UserService {
     UserDTO getUserByEmail(String email);
 
     UserDTO getUserByMobileNo(Long mobileNo);
+
+    UserDTO getUserByName(String name);
 }

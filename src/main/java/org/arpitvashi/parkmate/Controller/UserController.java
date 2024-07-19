@@ -1,8 +1,6 @@
 package org.arpitvashi.parkmate.Controller;
 
 import org.arpitvashi.parkmate.Dto.UserDTO;
-import org.arpitvashi.parkmate.Model.UserModel;
-import org.arpitvashi.parkmate.Repository.UserRepository;
 import org.arpitvashi.parkmate.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -71,6 +69,13 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserByMobileNo(@PathVariable("mobileNo") Long mobileNo) {
         UserDTO user = userService.getUserByMobileNo(mobileNo);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<UserDTO> getUserByName(@PathVariable("name") String name) {
+        UserDTO user = userService.getUserByName(name);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+
     }
 
 }

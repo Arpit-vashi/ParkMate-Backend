@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 public class UserDTO {
 
     private Long userId;
+
+    private String name;
     private String username;
     private String email;
     private Long mobileNo;
@@ -14,8 +16,9 @@ public class UserDTO {
 
     public UserDTO() {}
 
-    public UserDTO(Long userId, String username, String email, Long mobileNo, String role, String password, Timestamp createdAt) {
+    public UserDTO(Long userId, String name, String username, String email, Long mobileNo, String role, String password, Timestamp createdAt) {
         this.userId = userId;
+        this.name = name;
         this.username = username;
         this.email = email;
         this.mobileNo = mobileNo;
@@ -31,6 +34,10 @@ public class UserDTO {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     public String getUsername() {
         return username;
