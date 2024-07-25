@@ -2,6 +2,8 @@ package org.arpitvashi.parkmate.Model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "Vehicles")
 public class VehicleModel {
@@ -25,13 +27,21 @@ public class VehicleModel {
     @JoinColumn(name = "user_id", nullable = false)
     private UserModel user;
 
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
     public VehicleModel() {}
 
-    public VehicleModel(String licensePlate, Boolean isElectric, VehicleTypesModel vehicleType, UserModel user) {
+    public VehicleModel(String licensePlate, Boolean isElectric, VehicleTypesModel vehicleType, UserModel user, Date createdAt, Date updatedAt) {
         this.licensePlate = licensePlate;
         this.isElectric = isElectric;
         this.vehicleType = vehicleType;
         this.user = user;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Long getVehicleId() {
@@ -69,4 +79,25 @@ public class VehicleModel {
     public void setUser(UserModel user) {
         this.user = user;
     }
+
+    public Date getCreatedAt() { return createdAt; }
+
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+
+    public Date getUpdatedAt() { return updatedAt; }
+
+    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
+
+    // Automatically set createdAt and updatedAt before persisting or updating the entity
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = new Date();
+    }
+
 }

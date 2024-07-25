@@ -2,9 +2,7 @@ package org.arpitvashi.parkmate.Controller;
 
 
 import org.arpitvashi.parkmate.Dto.ParkingLotDTO;
-import org.arpitvashi.parkmate.Dto.VehicleTypesDTO;
 import org.arpitvashi.parkmate.Service.ParkingLotService;
-import org.arpitvashi.parkmate.Service.VehicleTypesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

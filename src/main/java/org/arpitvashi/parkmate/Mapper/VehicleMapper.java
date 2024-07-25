@@ -14,6 +14,8 @@ public class VehicleMapper {
         dto.setIsElectric(model.getIsElectric());
         dto.setVehicleType(model.getVehicleType());
         dto.setUser(model.getUser());
+        dto.setCreatedAt(model.getCreatedAt());
+        dto.setUpdatedAt(model.getUpdatedAt());
         return dto;
     }
 
@@ -24,6 +26,8 @@ public class VehicleMapper {
         model.setIsElectric(dto.getIsElectric());
         model.setVehicleType(dto.getVehicleType());
         model.setUser(dto.getUser());
+        model.setCreatedAt(dto.getCreatedAt());
+        model.setUpdatedAt(dto.getUpdatedAt());
         return model;
     }
 }

@@ -3,6 +3,7 @@ package org.arpitvashi.parkmate.Service.Impl;
 
 import org.arpitvashi.parkmate.Dto.VehicleDTO;
 import org.arpitvashi.parkmate.Mapper.VehicleMapper;
+import org.arpitvashi.parkmate.Model.ParkingLotModel;
 import org.arpitvashi.parkmate.Model.UserModel;
 import org.arpitvashi.parkmate.Model.VehicleModel;
 import org.arpitvashi.parkmate.Model.VehicleTypesModel;
@@ -86,11 +87,17 @@ public class VehicleServiceImpl implements VehicleService {
         if(vehicleDTO.getIsElectric()!= null) {
             existingVehicle.setIsElectric(vehicleDTO.getIsElectric());
         }
-        if(vehicleDTO.getVehicleType()!=null){
-            existingVehicle.setVehicleType(vehicleDTO.getVehicleType());
+
+        if (vehicleDTO.getVehicleType() != null) {
+            VehicleTypesModel vehicleType = vehicleTypesRepository.findById(vehicleDTO.getVehicleType().getVehicletypeId())
+                    .orElseThrow(() -> new RuntimeException("VehicleType not found"));
+            existingVehicle.setVehicleType(vehicleType);
         }
-        if(vehicleDTO.getUser()!=null){
-            existingVehicle.setUser(vehicleDTO.getUser());
+
+        if (vehicleDTO.getUser() != null) {
+            UserModel user = userRepository.findById(vehicleDTO.getUser().getUserId())
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+            existingVehicle.setUser(user);
         }
 
         VehicleModel updatedVehicle = vehicleRepository.save(existingVehicle);

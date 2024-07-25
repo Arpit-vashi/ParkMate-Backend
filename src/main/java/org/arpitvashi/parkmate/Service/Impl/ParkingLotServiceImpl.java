@@ -9,6 +9,7 @@ import org.arpitvashi.parkmate.Service.ParkingLotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,6 +65,15 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             existingPakingLots.setCapacity(parkingLotDTO.getCapacity());
         }
 
+        if(parkingLotDTO.getCreatedAt()!=null){
+            existingPakingLots.setCreatedAt(parkingLotDTO.getCreatedAt());
+        }
+
+        if(parkingLotDTO.getUpdatedAt()!=null){
+            existingPakingLots.setUpdatedAt(parkingLotDTO.getUpdatedAt());
+        }
+
+        existingPakingLots.setUpdatedAt(new Date());
         ParkingLotModel updateParkingLot = parkingLotRepository.save(existingPakingLots);
         return parkingLotMapper.toDTO(updateParkingLot);
     }

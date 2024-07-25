@@ -8,6 +8,7 @@ import org.arpitvashi.parkmate.Service.VehicleTypesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,7 +56,14 @@ public class VehicleTypesServiceImpl implements VehicleTypesService {
         if(vehicleTypesDTO.getTypename()!=null){
             existingVehicleTypes.setTypename(vehicleTypesDTO.getTypename());
         }
+        if(vehicleTypesDTO.getCreatedAt()!=null){
+            existingVehicleTypes.setCreatedAt(vehicleTypesDTO.getCreatedAt());
+        }
+        if(vehicleTypesDTO.getUpdatedAt()!=null){
+            existingVehicleTypes.setUpdatedAt(vehicleTypesDTO.getUpdatedAt());
+        }
 
+        existingVehicleTypes.setUpdatedAt(new Date());
         VehicleTypesModel updatedVehicleTypes = vehicleTypesRepository.save(existingVehicleTypes);
         return vehicleTypesMapper.toDTO(updatedVehicleTypes);
     }

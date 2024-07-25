@@ -4,6 +4,7 @@ package org.arpitvashi.parkmate.Model;
 import jakarta.persistence.*;
 
 import java.math.BigInteger;
+import java.util.Date;
 
 @Entity
 @Table(name = "ParkingLots")
@@ -23,14 +24,22 @@ public class ParkingLotModel {
     @Column(name = "Capacity", nullable = false)
     private BigInteger capacity;
 
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
     public ParkingLotModel() {
 
     }
 
-    public ParkingLotModel(String name, String location, BigInteger capacity) {
+    public ParkingLotModel(String name, String location, BigInteger capacity, Date createdAt, Date updatedAt) {
         this.name = name;
         this.location = location;
         this.capacity = capacity;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Long getParkingLotId() { return parkingLotId; }
@@ -48,5 +57,26 @@ public class ParkingLotModel {
     public BigInteger getCapacity() { return  capacity; }
 
     public void setCapacity(BigInteger capacity) { this.capacity = capacity; }
+
+    public Date getCreatedAt() { return createdAt; }
+
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+
+    public Date getUpdatedAt() { return updatedAt; }
+
+    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
+
+    // Automatically set createdAt and updatedAt before persisting or updating the entity
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = new Date();
+    }
+
 
 }
