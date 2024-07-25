@@ -9,6 +9,7 @@ import org.arpitvashi.parkmate.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -108,7 +109,11 @@ public class UserServiceImpl implements UserService {
         if(userDTO.getCreatedAt()!= null) {
             existingUser.setCreatedAt(userDTO.getCreatedAt());
         }
+        if(userDTO.getUpdatedAt()!= null) {
+            existingUser.setUpdatedAt(userDTO.getUpdatedAt());
+        }
 
+        existingUser.setUpdatedAt(new Date());
         UserModel updatedUser = userRepository.save(existingUser);
         return userMapper.toDTO(updatedUser);
     }

@@ -3,6 +3,8 @@ package org.arpitvashi.parkmate.Dto;
 import org.arpitvashi.parkmate.Model.UserModel;
 import org.arpitvashi.parkmate.Model.VehicleTypesModel;
 
+import java.util.Date;
+
 public class VehicleDTO {
 
     private Long vehicleId;
@@ -15,14 +17,20 @@ public class VehicleDTO {
 
     private UserModel user;
 
+    private Date createdAt;
+
+    private Date updatedAt;
+
     public VehicleDTO() {}
 
-    public VehicleDTO(Long vehicleId, String licensePlate, Boolean isElectric, VehicleTypesModel vehicleType, UserModel user) {
+    public VehicleDTO(Long vehicleId, String licensePlate, Boolean isElectric, VehicleTypesModel vehicleType, UserModel user, Date createdAt, Date updatedAt) {
         this.vehicleId = vehicleId;
         this.licensePlate = licensePlate;
         this.isElectric = isElectric;
         this.vehicleType = vehicleType;
         this.user = user;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Long getVehicleId() {
@@ -64,4 +72,12 @@ public class VehicleDTO {
     public void setUser(UserModel user) {
         this.user = user;
     }
+
+    public Date getCreatedAt() { return createdAt; }
+
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+
+    public Date getUpdatedAt() { return updatedAt; }
+
+    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
 }

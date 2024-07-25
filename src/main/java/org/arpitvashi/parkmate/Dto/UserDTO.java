@@ -1,6 +1,7 @@
 package org.arpitvashi.parkmate.Dto;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class UserDTO {
 
@@ -12,11 +13,13 @@ public class UserDTO {
     private Long mobileNo;
     private String role;
     private String password;
-    private Timestamp createdAt;
+    private Date createdAt;
+
+    private Date updatedAt;
 
     public UserDTO() {}
 
-    public UserDTO(Long userId, String name, String username, String email, Long mobileNo, String role, String password, Timestamp createdAt) {
+    public UserDTO(Long userId, String name, String username, String email, Long mobileNo, String role, String password, Date createdAt, Date updatedAt) {
         this.userId = userId;
         this.name = name;
         this.username = username;
@@ -25,7 +28,7 @@ public class UserDTO {
         this.role = role;
         this.password = password;
         this.createdAt = createdAt;
-    }
+        this.updatedAt = updatedAt;    }
 
     public Long getUserId() {
         return userId;
@@ -79,13 +82,14 @@ public class UserDTO {
         this.password = password;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
+    public Date getCreatedAt() { return createdAt; }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+
+    public Date getUpdatedAt() { return updatedAt; }
+
+    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
+
 
     @Override
     public String toString() {
@@ -97,6 +101,7 @@ public class UserDTO {
                 ", role='" + role + '\'' +
                 ", password='" + password + '\'' +
                 ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

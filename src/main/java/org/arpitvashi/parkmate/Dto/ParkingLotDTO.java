@@ -1,6 +1,7 @@
 package org.arpitvashi.parkmate.Dto;
 
 import java.math.BigInteger;
+import java.util.Date;
 
 public class ParkingLotDTO {
 
@@ -12,15 +13,21 @@ public class ParkingLotDTO {
 
     private BigInteger capacity;
 
+    private Date createdAt;
+
+    private Date updatedAt;
+
     public ParkingLotDTO() {
 
     }
 
-    public ParkingLotDTO(Long parkingLotId, String name, String location, BigInteger capacity) {
+    public ParkingLotDTO(Long parkingLotId, String name, String location, BigInteger capacity, Date createdAt, Date updatedAt) {
         this.parkingLotId = parkingLotId;
         this.name = name;
         this.location = location;
         this.capacity = capacity;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Long getParkingLotId() { return parkingLotId; }
@@ -38,6 +45,15 @@ public class ParkingLotDTO {
     public BigInteger getCapacity() { return capacity; }
 
     public void setCapacity(BigInteger capacity) { this.capacity = capacity; }
+
+    public Date getCreatedAt() { return createdAt; }
+
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+
+    public Date getUpdatedAt() { return updatedAt; }
+
+    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
+
 
 
 }

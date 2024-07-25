@@ -11,6 +11,8 @@ public class VehicleTypesMapper {
         VehicleTypesDTO dto = new VehicleTypesDTO();
         dto.setVehicletypeId(model.getVehicletypeId());
         dto.setTypename(model.getTypename());
+        dto.setCreatedAt(model.getCreatedAt());
+        dto.setUpdatedAt(model.getUpdatedAt());
         return dto;
     }
 
@@ -19,6 +21,8 @@ public class VehicleTypesMapper {
         VehicleTypesModel model = new VehicleTypesModel();
         model.setVehicletypeId(dto.getVehicletypeId());
         model.setTypename(dto.getTypename());
+        model.setCreatedAt(dto.getCreatedAt());
+        model.setUpdatedAt(dto.getUpdatedAt());
          return model;
     }
 

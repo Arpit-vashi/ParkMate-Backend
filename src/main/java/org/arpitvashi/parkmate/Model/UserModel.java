@@ -2,10 +2,11 @@ package org.arpitvashi.parkmate.Model;
 
 import jakarta.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "Users")
-public class UserModel {
+    public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,15 +31,18 @@ public class UserModel {
     @Column(name = "role", nullable = false)
     private String role;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private Timestamp createdAt;
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
 
     public UserModel() {
 
     }
 
-    public UserModel(String name, String username, String password, String email, Long mobileNo, String role, Timestamp createdAt) {
+    public UserModel(String name, String username, String password, String email, Long mobileNo, String role, Date createdAt, Date updatedAt) {
         this.name = name;
         this.username = username;
         this.password = password;
@@ -46,6 +50,7 @@ public class UserModel {
         this.mobileNo = mobileNo;
         this.role = role;
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Long getUserId() {
@@ -100,12 +105,25 @@ public class UserModel {
         this.role = role;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Date getCreatedAt() { return createdAt; }
+
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+
+    public Date getUpdatedAt() { return updatedAt; }
+
+    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
+
+    // Automatically set createdAt and updatedAt before persisting or updating the entity
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = new Date();
     }
+
 
 }

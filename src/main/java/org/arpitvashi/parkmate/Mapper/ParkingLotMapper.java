@@ -13,6 +13,8 @@ public class ParkingLotMapper {
         dto.setName(model.getName());
         dto.setLocation(model.getLocation());
         dto.setCapacity(model.getCapacity());
+        dto.setCreatedAt(model.getCreatedAt());
+        dto.setUpdatedAt(model.getUpdatedAt());
         return dto;
     }
 
@@ -22,6 +24,8 @@ public class ParkingLotMapper {
         model.setName(dto.getName());
         model.setLocation(dto.getLocation());
         model.setCapacity(dto.getCapacity());
+        model.setCreatedAt(dto.getCreatedAt());
+        model.setUpdatedAt(dto.getUpdatedAt());
         return model;
     }
 
