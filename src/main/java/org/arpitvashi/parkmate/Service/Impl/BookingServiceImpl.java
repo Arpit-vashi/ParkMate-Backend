@@ -57,10 +57,10 @@ public class BookingServiceImpl implements BookingService {
             throw new IllegalArgumentException("ParkingLot or ParkingSpace or Vehicle cannot be null");
         }
 
-        ParkingLotModel parlingLot = parkingLotRepository.findById(bookingDTO.getParkingLot().getParkingLotId())
+        ParkingLotModel parkingLot = parkingLotRepository.findById(bookingDTO.getParkingLot().getParkingLotId())
                 .orElseThrow(() -> new RuntimeException("ParkingLot not found"));
 
-        ParkingSpaceModel parlingSpace = parkingSpaceRepository.findById(bookingDTO.getParkingSpace().getParkingSpaceId())
+        ParkingSpaceModel parkingSpace = parkingSpaceRepository.findById(bookingDTO.getParkingSpace().getParkingSpaceId())
                 .orElseThrow(() -> new RuntimeException("ParkingSpace not found"));
 
         VehicleModel vehicle = vehicleRepository.findById(bookingDTO.getVehicle().getVehicleId())
@@ -70,8 +70,8 @@ public class BookingServiceImpl implements BookingService {
         booking.setStartTime(bookingDTO.getStartTime());
         booking.setEndTime(bookingDTO.getEndTime());
         booking.setBookingStatus(bookingDTO.getBookingStatus());
-        booking.setParkingLot(parlingLot);
-        booking.setParkingSpace(parlingSpace);
+        booking.setParkingLot(parkingLot);
+        booking.setParkingSpace(parkingSpace);
         booking.setVehicle(vehicle);
         booking.setCreatedAt(new Date());
         booking.setUpdatedAt(new Date());
