@@ -28,9 +28,6 @@ import java.util.Date;
     @Column(name = "mobileno", nullable = false, unique = true)
     private Long mobileNo;
 
-    @Column(name = "role", nullable = false)
-    private String role;
-
     @Column(name = "created_at")
     private Date createdAt;
 
@@ -42,13 +39,12 @@ import java.util.Date;
 
     }
 
-    public UserModel(String name, String username, String password, String email, Long mobileNo, String role, Date createdAt, Date updatedAt) {
+    public UserModel(String name, String username, String password, String email, Long mobileNo, Date createdAt, Date updatedAt) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
         this.mobileNo = mobileNo;
-        this.role = role;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -95,14 +91,6 @@ import java.util.Date;
 
     public void setMobileNo(Long mobileNo) {
         this.mobileNo = mobileNo;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public Date getCreatedAt() { return createdAt; }
