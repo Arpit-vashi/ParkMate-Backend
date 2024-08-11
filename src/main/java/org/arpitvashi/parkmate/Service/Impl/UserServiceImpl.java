@@ -81,10 +81,6 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("Mobile number already exists");
         }
 
-        if (userRepository.existsByMobileNo(userDTO.getMobileNo())) {
-            throw new IllegalArgumentException("Mobile number already exists");
-        }
-
         UserModel user = userMapper.toEntity(userDTO);
         UserModel savedUser = userRepository.save(user);
         return userMapper.toDTO(savedUser);
@@ -106,9 +102,6 @@ public class UserServiceImpl implements UserService {
         }
         if(userDTO.getMobileNo()!=null){
             existingUser.setMobileNo(userDTO.getMobileNo());
-        }
-        if(userDTO.getRole()!=null){
-            existingUser.setRole(userDTO.getRole());
         }
         if(userDTO.getCreatedAt()!= null) {
             existingUser.setCreatedAt(userDTO.getCreatedAt());

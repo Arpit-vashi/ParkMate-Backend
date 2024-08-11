@@ -11,7 +11,6 @@ public class UserDTO {
     private String username;
     private String email;
     private Long mobileNo;
-    private String role;
     private String password;
     private Date createdAt;
 
@@ -19,13 +18,12 @@ public class UserDTO {
 
     public UserDTO() {}
 
-    public UserDTO(Long userId, String name, String username, String email, Long mobileNo, String role, String password, Date createdAt, Date updatedAt) {
+    public UserDTO(Long userId, String name, String username, String email, Long mobileNo, String password, Date createdAt, Date updatedAt) {
         this.userId = userId;
         this.name = name;
         this.username = username;
         this.email = email;
         this.mobileNo = mobileNo;
-        this.role = role;
         this.password = password;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;    }
@@ -66,14 +64,6 @@ public class UserDTO {
         this.mobileNo = mobileNo;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -98,7 +88,6 @@ public class UserDTO {
                 ", username='" + username + '\'' +
                 ", email='" +email + '\'' +
                 ", mobileNo='" + mobileNo + '\'' +
-                ", role='" + role + '\'' +
                 ", password='" + password + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +

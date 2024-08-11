@@ -19,7 +19,6 @@ public class UserMapper {
         dto.setPassword(model.getPassword());
         dto.setEmail(model.getEmail());
         dto.setMobileNo(model.getMobileNo());
-        dto.setRole(model.getRole());
         dto.setCreatedAt(model.getCreatedAt());
         dto.setUpdatedAt(model.getUpdatedAt());
         return dto;
@@ -34,7 +33,6 @@ public class UserMapper {
         model.setPassword(dto.getPassword());
         model.setEmail(dto.getEmail());
         model.setMobileNo(dto.getMobileNo());
-        model.setRole(dto.getRole());
         model.setCreatedAt(dto.getCreatedAt());
         model.setUpdatedAt(dto.getUpdatedAt());
         return model;
