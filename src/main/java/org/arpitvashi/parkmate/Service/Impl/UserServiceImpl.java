@@ -1,18 +1,17 @@
 package org.arpitvashi.parkmate.Service.Impl;
 
-
 import org.arpitvashi.parkmate.Dto.UserDTO;
 import org.arpitvashi.parkmate.Mapper.UserMapper;
 import org.arpitvashi.parkmate.Model.UserModel;
 import org.arpitvashi.parkmate.Repository.UserRepository;
 import org.arpitvashi.parkmate.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.stream.Collectors;
-
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,11 +27,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> getAllUsers() {
-        List<UserModel> users = userRepository.findAll();
-        return users.stream()
-                .map(userMapper::toDTO)
-                .collect(Collectors.toList());
+    public Page<UserDTO> getAllUsers(Pageable pageable) {
+        Page<UserModel> users = userRepository.findAll(pageable);
+        return users.map(userMapper::toDTO);
     }
 
     @Override
@@ -72,7 +69,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
-
         if (userRepository.existsByEmail(userDTO.getEmail())) {
             throw new IllegalArgumentException("Email already exists");
         }
@@ -91,35 +87,45 @@ public class UserServiceImpl implements UserService {
         UserModel existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
 
-        if(userDTO.getUsername()!=null){
+        if(userDTO.getUsername() != null) {
             existingUser.setUsername(userDTO.getUsername());
         }
-        if(userDTO.getPassword()!= null) {
+        if(userDTO.getPassword() != null) {
             existingUser.setPassword(userDTO.getPassword());
         }
-        if(userDTO.getEmail()!=null){
+        if(userDTO.getEmail() != null) {
             existingUser.setEmail(userDTO.getEmail());
         }
-        if(userDTO.getMobileNo()!=null){
+        if(userDTO.getMobileNo() != null) {
             existingUser.setMobileNo(userDTO.getMobileNo());
-        }
-        if(userDTO.getCreatedAt()!= null) {
-            existingUser.setCreatedAt(userDTO.getCreatedAt());
-        }
-        if(userDTO.getUpdatedAt()!= null) {
-            existingUser.setUpdatedAt(userDTO.getUpdatedAt());
         }
 
         existingUser.setUpdatedAt(new Date());
         UserModel updatedUser = userRepository.save(existingUser);
         return userMapper.toDTO(updatedUser);
     }
+
     @Override
     public void deleteUser(Long id) {
         if (!userRepository.existsById(id)) {
             throw new RuntimeException("User not found with id: " + id);
         }
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean usernameExists(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
+    @Override
+    public boolean mobileExists(Long mobileNo) {
+        return userRepository.existsByMobileNo(mobileNo);
+    }
+
+    @Override
+    public boolean emailExists(String email) {
+        return userRepository.existsByEmail(email);
     }
 
 }

@@ -1,6 +1,8 @@
 package org.arpitvashi.parkmate.Service;
 
 import org.arpitvashi.parkmate.Dto.UserDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -8,7 +10,7 @@ public interface UserService {
 
     UserDTO createUser(UserDTO user);
 
-    List<UserDTO> getAllUsers();
+    Page<UserDTO> getAllUsers(Pageable pageable);
 
     UserDTO getUserById(Long id);
 
@@ -23,4 +25,11 @@ public interface UserService {
     UserDTO getUserByMobileNo(Long mobileNo);
 
     UserDTO getUserByName(String name);
+
+    boolean usernameExists(String username);
+
+    boolean mobileExists(Long mobileNo);
+
+    boolean emailExists(String email);
+
 }

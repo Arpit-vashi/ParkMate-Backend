@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -23,10 +27,14 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> users = userService.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public ResponseEntity<Page<UserDTO>> getAllUsers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<UserDTO> users = userService.getAllUsers(pageable);
+        return ResponseEntity.ok(users);
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long id) {
@@ -77,5 +85,24 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
 
     }
+
+    @GetMapping("/exists/username/{username}")
+    public ResponseEntity<Boolean> checkUsernameExists(@PathVariable String username) {
+        boolean exists = userService.usernameExists(username);
+        return ResponseEntity.ok(exists);
+    }
+
+    @GetMapping("/exists/mobile/{mobileNo}")
+    public ResponseEntity<Boolean> checkMobileExists(@PathVariable Long mobileNo) {
+        boolean exists = userService.mobileExists(mobileNo);
+        return ResponseEntity.ok(exists);
+    }
+
+    @GetMapping("/exists/email/{email}")
+    public ResponseEntity<Boolean> checkEmailExists(@PathVariable String email) {
+        boolean exists = userService.emailExists(email);
+        return ResponseEntity.ok(exists);
+    }
+
 
 }

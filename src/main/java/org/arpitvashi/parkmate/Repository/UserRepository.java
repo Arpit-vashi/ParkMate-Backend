@@ -3,6 +3,8 @@ package org.arpitvashi.parkmate.Repository;
 import org.arpitvashi.parkmate.Model.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
@@ -16,4 +18,6 @@ public interface UserRepository extends JpaRepository<UserModel, Long> {
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
     boolean existsByMobileNo(Long mobileNo);
+
+    Page<UserModel> findAll(Pageable pageable);
 }
