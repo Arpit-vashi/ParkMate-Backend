@@ -1,12 +1,11 @@
 package org.arpitvashi.parkmate.Model;
 
 import jakarta.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
 @Table(name = "Users")
-    public class UserModel {
+public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,28 +25,49 @@ import java.util.Date;
     private String email;
 
     @Column(name = "mobileno", nullable = false, unique = true)
-    private Long mobileNo;
+    private String mobileNo; // Changed to String to allow (countrycode)-(mobilenumber)
 
-    @Column(name = "created_at")
+    @Column(name = "address", nullable = true)
+    private String address; // Combined address field
+
+    @Column(name = "city", nullable = true)
+    private String city;
+
+    @Column(name = "state", nullable = true)
+    private String state;
+
+    // Many-to-One relationship with CountryModel
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id", nullable = false)
+    private CountryModel country;
+
+    // One-to-One relationship with WalletModel
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private WalletModel wallet; // Linking to WalletModel
+
+    @Column(name = "created_at", updatable = false)
     private Date createdAt;
 
     @Column(name = "updated_at")
     private Date updatedAt;
 
-
     public UserModel() {
-
     }
 
-    public UserModel(String name, String username, String password, String email, Long mobileNo, Date createdAt, Date updatedAt) {
+    public UserModel(String name, String username, String password, String email, String mobileNo, String address, String city, String state, CountryModel country, WalletModel wallet) {
         this.name = name;
         this.username = username;
-        this.password = password;
+        this.password = password; // Consider hashing this password before storing
         this.email = email;
-        this.mobileNo = mobileNo;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.mobileNo = mobileNo; // Updated to use String for mobileNo
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.country = country; // Associated CountryModel
+        this.wallet = wallet; // Associated WalletModel
     }
+
+    // Getters and Setters
 
     public Long getUserId() {
         return userId;
@@ -57,9 +77,13 @@ import java.util.Date;
         this.userId = userId;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getUsername() {
         return username;
@@ -74,7 +98,7 @@ import java.util.Date;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password; // Consider hashing before saving to DB
     }
 
     public String getEmail() {
@@ -85,23 +109,70 @@ import java.util.Date;
         this.email = email;
     }
 
-    public Long getMobileNo() {
+    public String getMobileNo() {
         return mobileNo;
     }
 
-    public void setMobileNo(Long mobileNo) {
+    public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
 
-    public Date getCreatedAt() { return createdAt; }
+    public String getAddress() {
+        return address;
+    }
 
-    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-    public Date getUpdatedAt() { return updatedAt; }
+    public String getCity() {
+        return city;
+    }
 
-    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-    // Automatically set createdAt and updatedAt before persisting or updating the entity
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public CountryModel getCountry() {
+        return country; // Getter for associated CountryModel
+    }
+
+    public void setCountry(CountryModel country) { // Setter for associated CountryModel
+        this.country = country;
+    }
+
+    public WalletModel getWallet() { // Getter for associated WalletModel
+        return wallet;
+    }
+
+    public void setWallet(WalletModel wallet) { // Setter for associated WalletModel
+        this.wallet = wallet;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = new Date();
@@ -112,6 +183,4 @@ import java.util.Date;
     protected void onUpdate() {
         this.updatedAt = new Date();
     }
-
-
 }

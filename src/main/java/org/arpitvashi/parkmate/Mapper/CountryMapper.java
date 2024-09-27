@@ -6,13 +6,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CountryMapper {
-
     // Convert CountryModel to CountryDTO
     public CountryDTO toDTO(CountryModel country) {
         if (country == null) {
             return null;
         }
-        return new CountryDTO(country.getName(), country.getTelephoneCode());
+        return new CountryDTO(country.getId(), country.getName(), country.getTelephoneCode()); // Include ID
     }
 
     // Convert CountryDTO to CountryModel

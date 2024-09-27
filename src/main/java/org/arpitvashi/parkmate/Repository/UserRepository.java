@@ -12,12 +12,12 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<UserModel, Long> {
     Optional<UserModel> getUserByUsername(String username);
     Optional<UserModel> getUserByEmail(String email);
-    Optional<UserModel> getUserByMobileNo(Long mobileNo);
+    Optional<UserModel> getUserByMobileNo(String mobileNo); // Updated to String
     Optional<UserModel> getUserByName(String name);
 
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
-    boolean existsByMobileNo(Long mobileNo);
+    boolean existsByMobileNo(String mobileNo); // Updated to String
 
     Page<UserModel> findAll(Pageable pageable);
 }

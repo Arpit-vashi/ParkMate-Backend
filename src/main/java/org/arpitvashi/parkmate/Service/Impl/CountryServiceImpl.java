@@ -27,4 +27,25 @@ public class CountryServiceImpl implements CountryService {
                 .map(countryMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public CountryDTO createCountry(CountryDTO countryDTO) {
+        CountryModel countryModel = countryMapper.toModel(countryDTO);
+        CountryModel savedCountry = countryRepository.save(countryModel);
+        return countryMapper.toDTO(savedCountry); // Will include ID
+    }
+
+    @Override
+    public CountryDTO getCountryById(Long id) {
+        return countryRepository.findById(id)
+                .map(countryMapper::toDTO)
+                .orElse(null); // Handle not found case as needed
+    }
+
+    @Override
+    public CountryDTO getCountryByName(String name) {
+        return countryRepository.findByName(name)
+                .map(countryMapper::toDTO)
+                .orElse(null); // Handle not found case as needed
+    }
 }

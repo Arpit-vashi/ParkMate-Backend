@@ -4,8 +4,6 @@ import org.arpitvashi.parkmate.Dto.UserDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
 public interface UserService {
 
     UserDTO createUser(UserDTO user);
@@ -22,14 +20,13 @@ public interface UserService {
 
     UserDTO getUserByEmail(String email);
 
-    UserDTO getUserByMobileNo(Long mobileNo);
+    UserDTO getUserByMobileNo(String mobileNo);
 
     UserDTO getUserByName(String name);
 
     boolean usernameExists(String username);
 
-    boolean mobileExists(Long mobileNo);
+    boolean mobileExists(String mobileNo);
 
     boolean emailExists(String email);
-
 }

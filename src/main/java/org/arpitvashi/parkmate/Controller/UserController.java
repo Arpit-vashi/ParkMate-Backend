@@ -9,14 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.sql.Timestamp;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     private final UserService userService;
@@ -34,7 +30,6 @@ public class UserController {
         Page<UserDTO> users = userService.getAllUsers(pageable);
         return ResponseEntity.ok(users);
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long id) {
@@ -74,7 +69,7 @@ public class UserController {
     }
 
     @GetMapping("/mobile/{mobileNo}")
-    public ResponseEntity<UserDTO> getUserByMobileNo(@PathVariable("mobileNo") Long mobileNo) {
+    public ResponseEntity<UserDTO> getUserByMobileNo(@PathVariable("mobileNo") String mobileNo) { // Updated to String
         UserDTO user = userService.getUserByMobileNo(mobileNo);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -83,7 +78,6 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserByName(@PathVariable("name") String name) {
         UserDTO user = userService.getUserByName(name);
         return new ResponseEntity<>(user, HttpStatus.OK);
-
     }
 
     @GetMapping("/exists/username/{username}")
@@ -93,7 +87,7 @@ public class UserController {
     }
 
     @GetMapping("/exists/mobile/{mobileNo}")
-    public ResponseEntity<Boolean> checkMobileExists(@PathVariable Long mobileNo) {
+    public ResponseEntity<Boolean> checkMobileExists(@PathVariable String mobileNo) { // Updated to String
         boolean exists = userService.mobileExists(mobileNo);
         return ResponseEntity.ok(exists);
     }
@@ -103,6 +97,4 @@ public class UserController {
         boolean exists = userService.emailExists(email);
         return ResponseEntity.ok(exists);
     }
-
-
 }
