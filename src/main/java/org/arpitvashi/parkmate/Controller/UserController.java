@@ -25,16 +25,30 @@ public class UserController {
     @GetMapping
     public ResponseEntity<Page<UserDTO>> getAllUsers(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false, defaultValue = "userId") String sortBy,
+            @RequestParam(required = false, defaultValue = "asc") String sortOrder) {
+
         Pageable pageable = PageRequest.of(page, size);
-        Page<UserDTO> users = userService.getAllUsers(pageable);
+        Page<UserDTO> users = userService.getAllUsers(pageable, sortBy, sortOrder);
         return ResponseEntity.ok(users);
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long id) {
         UserDTO user = userService.getUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Page<UserDTO>> searchUsers(
+            @RequestParam String searchTerm,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<UserDTO> users = userService.searchUsers(searchTerm, pageable);
+        return ResponseEntity.ok(users);
     }
 
     @PostMapping

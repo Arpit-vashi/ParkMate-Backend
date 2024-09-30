@@ -8,7 +8,7 @@ public interface UserService {
 
     UserDTO createUser(UserDTO user);
 
-    Page<UserDTO> getAllUsers(Pageable pageable);
+    Page<UserDTO> getAllUsers(Pageable pageable, String sortBy, String sortOrder);
 
     UserDTO getUserById(Long id);
 
@@ -29,4 +29,6 @@ public interface UserService {
     boolean mobileExists(String mobileNo);
 
     boolean emailExists(String email);
+
+    Page<UserDTO> searchUsers(String searchTerm, Pageable pageable);
 }

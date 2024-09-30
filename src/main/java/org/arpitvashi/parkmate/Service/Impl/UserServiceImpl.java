@@ -13,6 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort; // Import for Sort
+import org.springframework.data.domain.PageRequest; // Import for PageRequest
+
+
 
 import java.util.Date;
 import java.util.List;
@@ -53,10 +57,16 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Page<UserDTO> getAllUsers(Pageable pageable) {
-        Page<UserModel> users = userRepository.findAll(pageable);
+    public Page<UserDTO> getAllUsers(Pageable pageable, String sortBy, String sortOrder) {
+        // Create a Sort object based on the provided parameters
+        Sort sort = Sort.by(Sort.Direction.fromString(sortOrder), sortBy);
+        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+
+        // Call the repository to retrieve users with sorting applied
+        Page<UserModel> users = userRepository.findAll(sortedPageable);
         return users.map(userMapper::toDTO);
     }
+
 
     @Override
     public UserDTO getUserByEmail(String email) {
@@ -153,6 +163,12 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("User not found with id: " + id);
         }
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<UserDTO> searchUsers(String searchTerm, Pageable pageable) {
+        Page<UserModel> users = userRepository.searchUsers(searchTerm, pageable);
+        return users.map(userMapper::toDTO);
     }
 
 
