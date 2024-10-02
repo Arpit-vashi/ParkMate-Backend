@@ -3,12 +3,14 @@ package org.arpitvashi.parkmate.Service;
 import org.arpitvashi.parkmate.Dto.ParkingLotDTO;
 
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ParkingLotService {
 
     ParkingLotDTO createParkingLot(ParkingLotDTO parkingLot);
 
-    List<ParkingLotDTO> getAllParkingLots();
+    Page<ParkingLotDTO> getAllParkingLots(int page, int size);
 
     ParkingLotDTO getParkingLotById(Long id);
 
@@ -16,4 +18,5 @@ public interface ParkingLotService {
 
     void deleteParkingLot(Long id);
 
+    List<ParkingLotDTO> searchParkingLots(String search, Pageable pageable);
 }

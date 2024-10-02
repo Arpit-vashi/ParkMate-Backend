@@ -11,8 +11,16 @@ public class ParkingLotMapper {
         ParkingLotDTO dto = new ParkingLotDTO();
         dto.setParkingLotId(model.getParkingLotId());
         dto.setName(model.getName());
-        dto.setLocation(model.getLocation());
+        dto.setAddressLine1(model.getAddressLine1());
+        dto.setCity(model.getCity());
+        dto.setState(model.getState());
+        dto.setCountry(model.getCountry());
+        dto.setSupportEmail(model.getSupportEmail());
+        dto.setSupportMobile(model.getSupportMobile());
         dto.setCapacity(model.getCapacity());
+        dto.setFloors(model.getFloors());
+        dto.setUsedFloors(model.getUsedFloors());
+        dto.setOwners(model.getOwners());
         dto.setCreatedAt(model.getCreatedAt());
         dto.setUpdatedAt(model.getUpdatedAt());
         return dto;
@@ -22,13 +30,18 @@ public class ParkingLotMapper {
         ParkingLotModel model = new ParkingLotModel();
         model.setParkingLotId(dto.getParkingLotId());
         model.setName(dto.getName());
-        model.setLocation(dto.getLocation());
+        model.setAddressLine1(dto.getAddressLine1());
+        model.setCity(dto.getCity());
+        model.setState(dto.getState());
+        model.setCountry(dto.getCountry());
+        model.setSupportEmail(dto.getSupportEmail());
+        model.setSupportMobile(dto.getSupportMobile());
         model.setCapacity(dto.getCapacity());
+        model.setFloors(dto.getFloors());
+        model.setUsedFloors(dto.getUsedFloors());
+        model.setOwners(dto.getOwners());
         model.setCreatedAt(dto.getCreatedAt());
         model.setUpdatedAt(dto.getUpdatedAt());
         return model;
     }
-
-
-
 }
