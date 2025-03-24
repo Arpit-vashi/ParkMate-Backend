@@ -1,7 +1,6 @@
 package org.arpitvashi.parkmate.Service;
 
 import org.arpitvashi.parkmate.Dto.LoyaltyProgramDTO;
-
 import java.util.List;
 
 public interface LoyaltyProgramService {

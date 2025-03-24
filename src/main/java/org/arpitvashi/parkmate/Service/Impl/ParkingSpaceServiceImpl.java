@@ -1,14 +1,10 @@
 package org.arpitvashi.parkmate.Service.Impl;
 
-import org.arpitvashi.parkmate.Dto.FloorDTO;
 import org.arpitvashi.parkmate.Dto.ParkingSpaceDTO;
-import org.arpitvashi.parkmate.Mapper.FloorMapper;
 import org.arpitvashi.parkmate.Mapper.ParkingSpaceMapper;
 import org.arpitvashi.parkmate.Model.FloorModel;
-import org.arpitvashi.parkmate.Model.ParkingLotModel;
 import org.arpitvashi.parkmate.Model.ParkingSpaceModel;
 import org.arpitvashi.parkmate.Repository.FloorRepository;
-import org.arpitvashi.parkmate.Repository.ParkingLotRepository;
 import org.arpitvashi.parkmate.Repository.ParkingSpaceRepository;
 import org.arpitvashi.parkmate.Service.ParkingSpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,7 +104,5 @@ public class ParkingSpaceServiceImpl implements ParkingSpaceService {
         }
         parkingSpaceRepository.deleteById(id);
     }
-
-
 
 }

@@ -35,6 +35,7 @@ public class DiscountDTO {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+
     public Long getDiscountId() {
         return discountId;
     }

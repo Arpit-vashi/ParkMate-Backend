@@ -2,8 +2,6 @@ package org.arpitvashi.parkmate.Service.Impl;
 
 
 import org.arpitvashi.parkmate.Dto.FloorDTO;
-import org.arpitvashi.parkmate.Dto.UserDTO;
-import org.arpitvashi.parkmate.Dto.VehicleDTO;
 import org.arpitvashi.parkmate.Mapper.FloorMapper;
 import org.arpitvashi.parkmate.Model.*;
 import org.arpitvashi.parkmate.Repository.FloorRepository;
@@ -103,7 +101,5 @@ public class FloorServiceImpl implements FloorService {
         }
         floorRepository.deleteById(id);
     }
-
-
 
 }

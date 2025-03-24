@@ -53,25 +53,25 @@ public class DiscountServiceImpl implements DiscountService {
         DiscountModel existingDiscount = discountRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Discount not found with id: " + id));
 
-        if(discountDTO.getCode()!=null){
+        if (discountDTO.getCode() != null) {
             existingDiscount.setCode(discountDTO.getCode());
         }
-        if(discountDTO.getDescription()!= null) {
+        if (discountDTO.getDescription() != null) {
             existingDiscount.setDescription(discountDTO.getDescription());
         }
-        if(discountDTO.getDiscountPercentage()!=null){
+        if (discountDTO.getDiscountPercentage() != null) {
             existingDiscount.setDiscountPercentage(discountDTO.getDiscountPercentage());
         }
-        if(discountDTO.getValidFrom()!=null){
+        if (discountDTO.getValidFrom() != null) {
             existingDiscount.setValidFrom(discountDTO.getValidFrom());
         }
-        if(discountDTO.getValidTo()!=null){
+        if (discountDTO.getValidTo() != null) {
             existingDiscount.setValidTo(discountDTO.getValidTo());
         }
-        if(discountDTO.getCreatedAt()!= null) {
+        if (discountDTO.getCreatedAt() != null) {
             existingDiscount.setCreatedAt(discountDTO.getCreatedAt());
         }
-        if(discountDTO.getUpdatedAt()!= null) {
+        if (discountDTO.getUpdatedAt() != null) {
             existingDiscount.setUpdatedAt(discountDTO.getUpdatedAt());
         }
 

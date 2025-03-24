@@ -54,6 +54,4 @@ public class ParkingRateController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-
-
 }

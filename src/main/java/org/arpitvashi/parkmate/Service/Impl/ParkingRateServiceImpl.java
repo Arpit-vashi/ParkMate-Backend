@@ -110,6 +110,4 @@ public class ParkingRateServiceImpl implements ParkingRateService {
         parkingRateRepository.deleteById(id);
     }
 
-
-
 }
